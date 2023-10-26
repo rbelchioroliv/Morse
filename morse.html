@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conversor de Texto para Código Morse</title>
+    <script>
+        // Função para converter um caractere em código Morse
+        function charToMorse(c) {
+            const morseMap = {
+                'A': ".-", 'B': "-...", 'C': "-.-.", 'D': "-..", 'E': ".",
+                'F': "..-.", 'G': "--.", 'H': "....", 'I': "..", 'J': ".---",
+                'K': "-.-", 'L': ".-..", 'M': "--", 'N': "-.", 'O': "---",
+                'P': ".--.", 'Q': "--.-", 'R': ".-.", 'S': "...", 'T': "-",
+                'U': "..-", 'V': "...-", 'W': ".--", 'X': "-..-", 'Y': "-.--",
+                'Z': "--..", ' ': " "
+            };
+
+            // Converte o caractere em maiúsculas
+            c = c.toUpperCase();
+
+            // Verifica se o caractere está no mapa Morse
+            if (morseMap[c]) {
+                return morseMap[c];
+            }
+
+            // Se o caractere não for encontrado, retorna um espaço em branco
+            return "";
+        }
+
+        // Função para converter o texto para código Morse
+        function textToMorse() {
+            const inputText = document.getElementById("inputText").value;
+            let morseCode = "";
+
+            for (let i = 0; i < inputText.length; i++) {
+                const char = inputText[i];
+                const morseChar = charToMorse(char);
+                if (morseChar) {
+                    morseCode += morseChar + " ";
+                }
+            }
+
+            document.getElementById("outputMorse").textContent = morseCode;
+        }
+    </script>
+</head>
+<body>
+    <h1>Conversor de Texto para Código Morse</h1>
+    <label for="inputText">Insira uma frase:</label>
+    <input type="text" id="inputText">
+    <button onclick="textToMorse()">Converter</button>
+    <p>Código Morse resultante: <span id="outputMorse"></span></p>
+</body>
+</html>
